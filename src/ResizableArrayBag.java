@@ -151,7 +151,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 	// Returns the index of the entry, if located,
 	// or -1 otherwise.
    // Precondition: checkintegrity has been called.
-	private int getIndexOf(T anEntry)
+	int getIndexOf(T anEntry)
 	{
 		int where = -1;
 		boolean found = false;
@@ -223,8 +223,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
          throw new SecurityException ("ArrayBag object is corrupt.");
    } // end checkintegrity
    
-   public static void union(ResizableArrayBag<String> first, ResizableArrayBag<String> second) {
+   @SuppressWarnings({ "hiding", "unchecked" })
+   public <T> ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
 	   //implement a program that basically unions two arrays.
+	   ResizableArrayBag<T> newBag = new ResizableArrayBag<T>();
+	   
+	   //adding both bags to the new one.
+	   newBag.add((T) first);
+	   newBag.add((T)second);
+	   
+	   return newBag;
+	   
+	  	   
 	   
    }
    
