@@ -239,9 +239,16 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    }
 
 @Override
-public ResizableArrayBag<T> union() {
-	// TODO Auto-generated method stub
-	return null;
+public ResizableArrayBag<T> union(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
+	
+	for(T item: first.toArray()) {
+		everything.add(item);
+	}
+	for(T item: second.toArray()) {
+		everything.add(item);
+	}
+	return everything;
 }
 
 @Override
@@ -251,9 +258,14 @@ public ResizableArrayBag<T> intersection() {
 }
 
 @Override
-public ResizableArrayBag<T> difference() {
-	// TODO Auto-generated method stub
-	return null;
+public ResizableArrayBag<T> difference(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+	ResizableArrayBag<T> difference = union(first, second);
+	ResizableArrayBag<T> intersection = intersection(first, second);
+
+	for(T item: intersection.toArray()) {
+		difference.remove(item);
+	}
+	return difference;
 }
    
    
