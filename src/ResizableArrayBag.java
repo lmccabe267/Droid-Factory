@@ -249,6 +249,12 @@ public ResizableArrayBag<T> intersection() {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public ResizableArrayBag<T> difference() {
+	// TODO Auto-generated method stub
+	return null;
+}
    
    
    

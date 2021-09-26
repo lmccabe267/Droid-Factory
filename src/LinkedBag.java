@@ -69,6 +69,24 @@ public class LinkedBag<T> implements BagInterface<T>
       System.out.println();
    } // end displayBag
 
+@Override
+public ResizableArrayBag<T> union() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResizableArrayBag<T> intersection() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResizableArrayBag<T> difference() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 } // end LinkedBagDemo1
 
 /*
