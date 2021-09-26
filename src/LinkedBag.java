@@ -145,24 +145,31 @@ public final class LinkedBag<T> implements BagInterface<T>
        } // end setNextNode
     } // end Node
 @Override
-public BagInterface<T> union(BagInterface<T> first, BagInterface<T> second) {
+public BagInterface<T> union(BagInterface<T> bag) {
 	LinkedBag<T> everything = new LinkedBag<T>();
-	boolean lastReached = false;
-	Node currentNode = firstNode
-	while(!lastReached){
-		everything.add(null)
+	for(T item: toArray()) {
+		everything.add(item);
 	}
+	for(T item: ((LinkedBag<T>)bag).toArray()) {
+		everything.add(item);
+	}
+	return everything;
 }
 
 @Override
-public BagInterface<T> intersection(BagInterface<T> first, BagInterface<T> second) {
+public BagInterface<T> intersection(BagInterface<T> bag) {
 	// TODO Auto-generated method stub
 	return null;
 }
 
 @Override
-public BagInterface<T> difference(BagInterface<T> first, BagInterface<T> second) {
-	// TODO Auto-generated method stub
-	return null;
+public BagInterface<T> difference(BagInterface<T> bag) {
+	LinkedBag<T> difference = (LinkedBag<T>)union(bag);
+	LinkedBag<T> intersection = (LinkedBag<T>)intersection(bag);
+	for(T item: intersection.toArray()) {
+		difference.remove(item);
+	}
+	
+	return difference;
 }
 } // end LinkedBag
