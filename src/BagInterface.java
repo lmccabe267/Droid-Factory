@@ -5,7 +5,7 @@ public interface BagInterface<T> {
 		public ResizableArrayBag<T> union();
 		
 		//An intersection is a collection of elements that appear in both collections given.
-		public ResizableArrayBag<T> intersection();
+		public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second);
 		
 		public ResizableArrayBag<T> difference();
 		

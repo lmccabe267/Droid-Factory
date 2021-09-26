@@ -223,20 +223,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
          throw new SecurityException ("ArrayBag object is corrupt.");
    } // end checkintegrity
    
-   @SuppressWarnings({ "hiding", "unchecked" })
-   public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
-	   //implement a program that basically unions two arrays.
-	   ResizableArrayBag<T> newBag = new ResizableArrayBag<T>();
-	   
-	   //adding both bags to the new one.
-	   newBag.add((T) first);
-	   newBag.add((T)second);
-	   
-	   return newBag;
-	   
-	  	   
-	   
-   }
+   //@SuppressWarnings({ "hiding", "unchecked" })
+   
 
 @Override
 public ResizableArrayBag<T> union() {
@@ -244,10 +232,20 @@ public ResizableArrayBag<T> union() {
 	return null;
 }
 
-@Override
-public ResizableArrayBag<T> intersection() {
+public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
 	// TODO Auto-generated method stub
-	return null;
+	ResizableArrayBag<T> intersection = new ResizableArrayBag<T>();
+	ResizableArrayBag<T> temp = second;
+	
+	for(T item: first.toArray()) {
+		if(second.contains(item)) {
+			intersection.add(item);
+			temp.remove(item);
+		}
+		
+	}
+	
+	return intersection;
 }
 
 @Override
