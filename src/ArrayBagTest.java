@@ -4,9 +4,9 @@ public class ArrayBagTest{
 	@SuppressWarnings("unchecked")
 	public static void main(String[]args) {
 		//This section will test out the three methods, intersection, union, difference
-		ResizableArrayBag<String> newOne = new ResizableArrayBag<String>(2);
-		ResizableArrayBag<String> secondArray = new ResizableArrayBag<String>(2);
-		ResizableArrayBag<String> thirdArray = new ResizableArrayBag<String>(2);
+		BagInterface<String> newOne = new ResizableArrayBag<>();
+		BagInterface<String> secondArray = new ResizableArrayBag<>();
+		BagInterface<String> thirdArray = new ResizableArrayBag<>();
 		
 		//adding content to secondArray
 		secondArray.add("a");
@@ -15,11 +15,10 @@ public class ArrayBagTest{
 		secondArray.add("e");
 		secondArray.add("d");
 		//test print...seems to print the location of the array in memory
-		System.out.println(secondArray);
+		System.out.println(secondArray.toString());
+		//System.out.println(thirdArray.toString());
 		//Testing to see if the bag stored values correctly
-		System.out.println(secondArray.getIndexOf("a"));
-		System.out.println(secondArray.getIndexOf("b"));
-		System.out.println(secondArray.getIndexOf("e"));
+		
 		
 		//adding content to thirdArray
 		thirdArray.add("h"); 
@@ -27,9 +26,11 @@ public class ArrayBagTest{
 		thirdArray.add("f");
 		thirdArray.add("g");
 		thirdArray.add("e");
-		//test print...does same thing...odd...
-		System.out.println(thirdArray);
 		
+		System.out.println(thirdArray.toString());
+		//test print...does same thing...odd...
+		ResizableArrayBag<String> fourthArray = (ResizableArrayBag<String>)secondArray.union(secondArray, thirdArray);
+		System.out.println(fourthArray.toString());
 		
 		//printing intersections
 		System.out.println("Printing intersection");

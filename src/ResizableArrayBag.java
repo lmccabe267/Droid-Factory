@@ -76,7 +76,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       
       return result;
 	} // end toArray
-   
+	
+	
+	public String toString() {
+		T[] array = toArray();
+		String str = "{";
+		
+		for(T item: array) {
+			str += item + ",";
+		}
+		str += "}";
+		return str;
+	}
 	/** Sees whether this bag is empty.
        @return  True if this bag is empty, or false if not. */
 	public boolean isEmpty()
@@ -151,7 +162,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 	// Returns the index of the entry, if located,
 	// or -1 otherwise.
    // Precondition: checkintegrity has been called.
-	int getIndexOf(T anEntry)
+	@Override
+	public int getIndexOf(T anEntry)
 	{
 		int where = -1;
 		boolean found = false;
@@ -226,26 +238,28 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    //@SuppressWarnings({ "hiding", "unchecked" })
    
 
+
 @Override
-public ResizableArrayBag<T> union(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+public BagInterface<T> union(BagInterface<T> first, BagInterface<T> second) {
 ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
 	
-	for(T item: first.toArray()) {
+	for(T item: ((ResizableArrayBag<T>) first).toArray()) {
 		everything.add(item);
 	}
-	for(T item: second.toArray()) {
+	for(T item: ((ResizableArrayBag<T>) second).toArray()) {
 		everything.add(item);
 	}
 	return everything;
 }
 
-public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+@Override
+public BagInterface<T> intersection(BagInterface<T> first, BagInterface<T> second) {
 	// TODO Auto-generated method stub
 	ResizableArrayBag<T> intersection = new ResizableArrayBag<T>();
-	ResizableArrayBag<T> temp = second;
+	ResizableArrayBag<T> temp = (ResizableArrayBag<T>) second;
 	
-	for(T item: first.toArray()) {
-		if(second.contains(item)) {
+	for(T item: ((ResizableArrayBag<T>) first).toArray()) {
+		if(((ResizableArrayBag<T>) second).contains(item)) {
 			intersection.add(item);
 			temp.remove(item);
 		}
@@ -256,9 +270,9 @@ public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableAr
 }
 
 @Override
-public ResizableArrayBag<T> difference(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
-	ResizableArrayBag<T> difference = union(first, second);
-	ResizableArrayBag<T> intersection = intersection(first, second);
+public ResizableArrayBag<T> difference(BagInterface<T> first, BagInterface<T> second) {
+	ResizableArrayBag<T> difference = (ResizableArrayBag<T>) union(first, second);
+	ResizableArrayBag<T> intersection = (ResizableArrayBag<T>) intersection(first, second);
 
 	for(T item: intersection.toArray()) {
 		difference.remove(item);
