@@ -1,105 +1,206 @@
-/** A test of the methods add, toArray, isEmpty, and getCurrentSize, 
-    as defined in the first draft of the class LinkedBag.
+/**
+    A class of bags whose entries are stored in a chain of linked nodes.
+    The bag is never full.
+    INCOMPLETE DEFINITION; includes definitions for the methods add,
+    toArray, isEmpty, and getCurrentSize.
     @author Frank M. Carrano, Timothy M. Henry
     @version 5.0
 */
-public class LinkedBag<T> implements BagInterface<T>
+public final class LinkedBag<T> implements BagInterface<T>
 {
-	public static void main(String[] args) 
+	private Node firstNode;       // Reference to first node
+	private int numberOfEntries;
+
+	public LinkedBag()
 	{
-      System.out.println("Creating an empty bag.");
-      BagInterface<String> aBag = new LinkedBag<>();
-      testIsEmpty(aBag, true);
-		displayBag(aBag);
+		firstNode = null;
+      numberOfEntries = 0;
+	} // end default constructor
+
+	/** Adds a new entry to this bag.
+	    @param newEntry  The object to be added as a new entry.
+	    @return  True. */
+	public boolean add(T newEntry) // OutOfMemoryError possible
+	{
+      // Add to beginning of chain:
+		Node newNode = new Node(newEntry);
+		newNode.next = firstNode;  // Make new node reference rest of chain
+                                 // (firstNode is null if chain is empty)
+      firstNode = newNode;       // New node is at beginning of chain
+		numberOfEntries++;
       
-      String[] contentsOfBag = {"A", "D", "B", "A", "C", "A", "D"};
-		testAdd(aBag, contentsOfBag);
-		testIsEmpty(aBag, false);
-	} // end main
-   
-   // Tests the method isEmpty.
-   // Precondition: If the bag is empty, the parameter empty should be true;
-   // otherwise, it should be false.
-	private static void testIsEmpty(BagInterface<String> bag, boolean empty)
-   {
-      System.out.print("\nTesting isEmpty with ");
-      if (empty)
-         System.out.println("an empty bag:");
-      else
-         System.out.println("a bag that is not empty:");
+		return true;
+	} // end add
+
+	/** Retrieves all entries that are in this bag.
+       @return  A newly allocated array of all the entries in this bag. */
+	public T[] toArray()
+	{
+      // The cast is safe because the new array contains null entries.
+      @SuppressWarnings("unchecked")
+      T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
       
-      System.out.print("isEmpty finds the bag ");
-      if (empty && bag.isEmpty())
-			System.out.println("empty: OK.");
-		else if (empty)
-			System.out.println("not empty, but it is: ERROR.");
-		else if (!empty && bag.isEmpty())
-			System.out.println("empty, but it is not empty: ERROR.");
-		else
-			System.out.println("not empty: OK.");      
-	} // end testIsEmpty
-   
-   // Tests the method add.
-   private static void testAdd(BagInterface<String> aBag, String[] content)
-   {
-      System.out.print("Adding the following strings to the bag: ");
-      for (int index = 0; index < content.length; index++)
+      int index = 0;
+      Node currentNode = firstNode;
+      while ((index < numberOfEntries) && (currentNode != null))
       {
-         if (aBag.add(content[index]))
-            System.out.print(content[index] + " ");
-         else
-            System.out.print("\nUnable to add " + content[index] +
-                             " to the bag.");
-      } // end for
-      System.out.println();
+         result[index] = currentNode.data;
+         index++;
+         currentNode = currentNode.next;
+      } // end while
       
-      displayBag(aBag);
-   } // end testAdd
+      return result;
+      // Note: The body of this method could consist of one return statement,
+      // if you call Arrays.copyOf
+	} // end toArray
    
-   // Tests the method toArray while displaying the bag.
-   private static void displayBag(BagInterface<String> aBag)
+	/** Sees whether this bag is empty.
+       @return  True if the bag is empty, or false if not. */
+	public boolean isEmpty()
+	{
+		return numberOfEntries == 0;
+	} // end isEmpty
+   
+	/** Gets the number of entries currently in this bag.
+       @return  The integer number of entries currently in the bag. */
+	public int getCurrentSize()
+	{
+		return numberOfEntries;
+	} // end getCurrentSize
+   
+// STUBS:
+
+	/** Removes one unspecified entry from this bag, if possible.
+       @return  Either the removed entry, if the removal
+                was successful, or null. */
+	public T remove()
    {
-      System.out.println("The bag contains the following string(s):");
-      Object[] bagArray = aBag.toArray();
-      for (int index = 0; index < bagArray.length; index++)
-      {
-         System.out.print(bagArray[index] + " ");
-      } // end for
-      
-      System.out.println();
-   } // end displayBag
+      return null; // STUB
+   } // end remove
+   
+	/** Removes one occurrence of a given entry from this bag.
+       @param anEntry  The entry to be removed.
+       @return  True if the removal was successful, or false otherwise. */
+   public boolean remove(T anEntry)
+   {
+      return false; // STUB
+   } // end remove
+	
+	/** Removes all entries from this bag. */
+	public void clear()
+   {
+      // STUB
+   } // end clear
+	
+	/** Counts the number of times a given entry appears in this bag.
+		 @param anEntry  The entry to be counted.
+		 @return  The number of times anEntry appears in the bag. */
+	public int getFrequencyOf(T anEntry)
+   {
+      return 0; // STUB
+   } // end getFrequencyOf
+	
+	/** Tests whether this bag contains a given entry.
+		 @param anEntry  The entry to locate.
+		 @return  True if the bag contains anEntry, or false otherwise. */
+	public boolean contains(T anEntry)
+   {
+      return false; // STUB
+   } // end contains
 
-@Override
-public ResizableArrayBag<T> union() {
-	// TODO Auto-generated method stub
-	return null;
-}
+	private class Node
+	{
+	   private T data;    // Entry in bag
+	   private Node next; // Link to next node
+	   
+	   private Node(T dataPortion)
+	   {
+	      this(dataPortion, null);
+	   } // end constructor
+	   
+	   private Node(T dataPortion, Node nextNode)
+	   {
+	      data = dataPortion;
+	      next = nextNode;
+	   } // end constructor
+	   
+	   private T getData()
+	   {
+	      return data;
+	   } // end getData
+	   
+	   private void setData(T newData)
+	   {
+	      data = newData;
+	   } // end setData
+	   
+	   private Node getNextNode()
+	   {
+	      return next;
+	   } // end getNextNode
+	   
+	   private void setNextNode(Node nextNode)
+	   {
+	      next = nextNode;
+	   } // end setNextNode
+	} // end Node
 
-@Override
-public ResizableArrayBag<T> intersection() {
-	// TODO Auto-generated method stub
-	return null;
-}
+	@Override
+	public ResizableArrayBag<T> union() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-@Override
-public ResizableArrayBag<T> difference() {
-	// TODO Auto-generated method stub
-	return null;
-}
+	//@Override
+	public LinkedBag<T> intersectionL(LinkedBag<T> first, LinkedBag<T> second) {
+		
+		LinkedBag<T> intersection = new LinkedBag<T>();
+		LinkedBag<T> temp = second;
+		
+		for(T item: first.toArray()) {
+			if(second.contains(item)) {
+				intersection.add(item);
+				temp.remove(item);
+			}
+			
+		}
+		
+		return intersection;
+	}
 
-} // end LinkedBagDemo1
+	@Override
+	public LinkedBag<T> differenceL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-/*
- Creating an empty bag.
- 
- Testing isEmpty with an empty bag:
- isEmpty finds the bag empty: OK.
- The bag contains the following string(s):
- 
- Adding the following strings to the bag: A D B A C A D
- The bag contains the following string(s):
- D A C A B D A
- 
- Testing isEmpty with a bag that is not empty:
- isEmpty finds the bag not empty: OK.
- */
+	@Override
+	public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+		return null;
+	}
+
+	@Override
+	public LinkedBag<T> unionL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResizableArrayBag<T> difference() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public LinkedBag<T> intersectionL(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
+
+} // end LinkedBag1
+
+
+

@@ -9,5 +9,12 @@ public interface BagInterface<T> {
 		
 		public ResizableArrayBag<T> difference();
 		
+		public LinkedBag<T> unionL();
+		
+		//An intersection is a collection of elements that appear in both collections given.
+		public LinkedBag<T> intersectionL(LinkedBag<T> first, LinkedBag<T> second);
+		
+		public LinkedBag<T> differenceL();
+		
 		
 }

@@ -253,6 +253,25 @@ public ResizableArrayBag<T> difference() {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public LinkedBag<T> unionL() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+@Override
+public LinkedBag<T> differenceL() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public LinkedBag<T> intersectionL(LinkedBag<T> first, LinkedBag<T> second) {
+	// TODO Auto-generated method stub
+	return null;
+}
    
    
    
