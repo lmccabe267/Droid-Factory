@@ -29,12 +29,12 @@ public class ArrayBagTest{
 		
 		System.out.println(thirdArray.toString());
 		//test print...does same thing...odd...
-		ResizableArrayBag<String> fourthArray = (ResizableArrayBag<String>)secondArray.union(secondArray, thirdArray);
+		ResizableArrayBag<String> fourthArray = (ResizableArrayBag<String>)secondArray.union(thirdArray);
 		System.out.println(fourthArray.toString());
 		
 		//printing intersections
 		System.out.println("Printing intersection");
-		System.out.println(newOne.intersection(secondArray, thirdArray));
+		//System.out.println(newOne.intersection(secondArray, thirdArray));
 		
 		
 	}

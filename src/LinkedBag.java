@@ -144,22 +144,25 @@ public final class LinkedBag<T> implements BagInterface<T>
           next = nextNode;
        } // end setNextNode
     } // end Node
+@Override
+public BagInterface<T> union(BagInterface<T> first, BagInterface<T> second) {
+	LinkedBag<T> everything = new LinkedBag<T>();
+	boolean lastReached = false;
+	Node currentNode = firstNode
+	while(!lastReached){
+		everything.add(null)
+	}
+}
 
 @Override
-public ResizableArrayBag<T> union(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+public BagInterface<T> intersection(BagInterface<T> first, BagInterface<T> second) {
 	// TODO Auto-generated method stub
 	return null;
 }
 
 @Override
-public ResizableArrayBag<T> intersection(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
+public BagInterface<T> difference(BagInterface<T> first, BagInterface<T> second) {
 	// TODO Auto-generated method stub
 	return null;
 }
-
-@Override
-public ResizableArrayBag<T> difference(ResizableArrayBag<T> first, ResizableArrayBag<T> second) {
-	// TODO Auto-generated method stub
-	return null;
-}
-} // end LinkedBag1
+} // end LinkedBag

@@ -162,7 +162,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 	// Returns the index of the entry, if located,
 	// or -1 otherwise.
    // Precondition: checkintegrity has been called.
-	@Override
 	public int getIndexOf(T anEntry)
 	{
 		int where = -1;
@@ -238,29 +237,28 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    //@SuppressWarnings({ "hiding", "unchecked" })
    
 
-
 @Override
-public BagInterface<T> union(BagInterface<T> first, BagInterface<T> second) {
+public BagInterface<T> union(BagInterface<T> bag) {
 ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
 	
-	for(T item: ((ResizableArrayBag<T>) first).toArray()) {
+	for(T item: toArray()) {
 		everything.add(item);
 	}
-	for(T item: ((ResizableArrayBag<T>) second).toArray()) {
+	for(T item: ((ResizableArrayBag<T>) bag).toArray()) {
 		everything.add(item);
 	}
 	return everything;
 }
 
 @Override
-public BagInterface<T> intersection(BagInterface<T> first, BagInterface<T> second) {
-	// TODO Auto-generated method stub
+public BagInterface<T> intersection(BagInterface<T> bag) {
 	ResizableArrayBag<T> intersection = new ResizableArrayBag<T>();
-	ResizableArrayBag<T> temp = (ResizableArrayBag<T>) second;
+	ResizableArrayBag<T> temp = (ResizableArrayBag<T>) bag;
 	
-	for(T item: ((ResizableArrayBag<T>) first).toArray()) {
-		if(((ResizableArrayBag<T>) second).contains(item)) {
+	for(T item: toArray()) {
+		if(((ResizableArrayBag<T>) bag).contains(item)) {
 			intersection.add(item);
+			
 			temp.remove(item);
 		}
 		
@@ -270,9 +268,9 @@ public BagInterface<T> intersection(BagInterface<T> first, BagInterface<T> secon
 }
 
 @Override
-public ResizableArrayBag<T> difference(BagInterface<T> first, BagInterface<T> second) {
-	ResizableArrayBag<T> difference = (ResizableArrayBag<T>) union(first, second);
-	ResizableArrayBag<T> intersection = (ResizableArrayBag<T>) intersection(first, second);
+public BagInterface<T> difference(BagInterface<T> bag) {
+	ResizableArrayBag<T> difference = (ResizableArrayBag<T>) union(bag);
+	ResizableArrayBag<T> intersection = (ResizableArrayBag<T>) intersection(bag);
 
 	for(T item: intersection.toArray()) {
 		difference.remove(item);
