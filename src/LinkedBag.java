@@ -95,11 +95,6 @@ public final class LinkedBag<T> implements BagInterface<T>
 	/** Counts the number of times a given entry appears in this bag.
 		 @param anEntry  The entry to be counted.
 		 @return  The number of times anEntry appears in the bag. */
-	public int getFrequencyOf(T anEntry)
-   {
-      return 0; // STUB
-   } // end getFrequencyOf
-	
 	/** Tests whether this bag contains a given entry.
 		 @param anEntry  The entry to locate.
 		 @return  True if the bag contains anEntry, or false otherwise. */
