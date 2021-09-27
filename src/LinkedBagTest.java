@@ -3,7 +3,7 @@ public class LinkedBagTest {
 	public static void main(String[] args) 
 	{
       System.out.println("Creating an empty bag.");
-      BagInterface<String> aBag = new LinkedBag<>();
+      LinkedBag<String> aBag = new LinkedBag<>();
       testIsEmpty(aBag, true);
 		displayBag(aBag);
       
@@ -15,7 +15,7 @@ public class LinkedBagTest {
    // Tests the method isEmpty.
    // Precondition: If the bag is empty, the parameter empty should be true;
    // otherwise, it should be false.
-	private static void testIsEmpty(BagInterface<String> bag, boolean empty)
+	private static void testIsEmpty(LinkedBag<String> bag, boolean empty)
    {
       System.out.print("\nTesting isEmpty with ");
       if (empty)
@@ -64,6 +64,12 @@ public class LinkedBagTest {
       System.out.println();
    } // end displayBag
 
+   	public static <T> boolean isEmpty(LinkedBag<T> bag) {
+   		if (isEmpty(bag)) {
+   			return true;
+   		}
+   		return false;
+   	}
 
 } // end LinkedBagDemo1
 

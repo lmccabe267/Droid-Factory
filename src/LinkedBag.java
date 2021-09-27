@@ -158,8 +158,20 @@ public BagInterface<T> union(BagInterface<T> bag) {
 
 @Override
 public BagInterface<T> intersection(BagInterface<T> bag) {
-	// TODO Auto-generated method stub
-	return null;
+	LinkedBag<T> intersection = new LinkedBag<T>();
+	LinkedBag<T> temp = (LinkedBag<T>) bag;
+	
+	for(T item: toArray()) {
+		if(((LinkedBag<T>) bag).contains(item)) {
+			intersection.add(item);
+			
+			temp.remove(item);
+		}
+		
+	}
+	
+	return intersection;
+	
 }
 
 @Override

@@ -34,7 +34,7 @@ public class ArrayBagTest{
 		
 		//printing intersections
 		System.out.println("Printing intersection");
-		//System.out.println(newOne.intersection(secondArray, thirdArray));
+		System.out.println(secondArray.intersection(thirdArray));
 		
 		
 	}
