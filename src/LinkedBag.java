@@ -144,6 +144,17 @@ public final class LinkedBag<T> implements BagInterface<T>
           next = nextNode;
        } // end setNextNode
     } // end Node
+    
+    
+    
+/*
+ * Iterates through both the LinkedBag<T> calling the method as well as the LinkedBag<T> passed in and combines the items
+ * 	in both of the bags into a new LinkedBag<T> which is returned
+ * 
+ * @param bag must be a LinkedBag<T> of the same type as the LinkedBag<T> calling the method
+ * @return the LinkedBag<T> which is a result of the combination of items contained in the LinkedBag<T> calling the method
+ * 	as well as the LinkedBag<T> passed in
+ */
 @Override
 public BagInterface<T> union(BagInterface<T> bag) {
 	LinkedBag<T> everything = new LinkedBag<T>();
@@ -156,6 +167,13 @@ public BagInterface<T> union(BagInterface<T> bag) {
 	return everything;
 }
 
+/*
+ *  Iterates through both the LinkedBag<T> calling the method as well as the LinkedBag<T> passed in
+ *   then returns a LinkedBag<T> which contains the common items in each bag
+ *   
+ *   @param bag must be a LinkedBag<T> of the same type as the LinkedBag<T> calling the method
+ *   @return the LinkedBag<T> which is a result of finding the common items between the two bags
+ */
 @Override
 public BagInterface<T> intersection(BagInterface<T> bag) {
 	LinkedBag<T> intersection = new LinkedBag<T>();
@@ -174,6 +192,13 @@ public BagInterface<T> intersection(BagInterface<T> bag) {
 	
 }
 
+/*
+ * Iterates through the LinkedBag<T> calling the method as well as the LinkedBag<T> passed in
+ * it then returns a LinkedBag<T> which is a result of finding the uncommon items between the two bags
+ * 
+ * @param bag must be a LinkedBag<T> of the same type as the LinkedBag<T> calling the method
+ * @return the LinkedBag<T> which is a result of finding the uncommon items between the two bags
+ */
 @Override
 public BagInterface<T> difference(BagInterface<T> bag) {
 	LinkedBag<T> difference = (LinkedBag<T>)union(bag);

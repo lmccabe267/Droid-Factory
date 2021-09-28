@@ -237,6 +237,15 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    //@SuppressWarnings({ "hiding", "unchecked" })
    
 
+/*
+* 	Iterates through the ResizableArrayBag<T> that calls the method as well as the ResizableArrayBag<T>
+* that is passed in as a parameter and combines them into one ResizableArrayBag<T>
+* This new ResizableArrayBag<T> object is returned as a BagInterface<T> object
+* 
+* @param bag must be a ResizableArrayBag<T> of the same type as the ResizableArrayBag<T> calling the method
+* @return the ResizableArrayBag<T> that is the result of the combination of the ResizablArrayBag<T> that called the method and
+* 		   he ResizableArrayBag<T> that is passed in as a parameter
+*/
 @Override
 public BagInterface<T> union(BagInterface<T> bag) {
 ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
@@ -250,6 +259,14 @@ ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
 	return everything;
 }
 
+/*
+ * 	Iterates through the ResizableArrayBag<T> and the ResizableArrayBag<T> passed in to find common items in the bags
+ * these common items are then added to a new ResizableArrayBag<T> that is returned from the method
+ * 
+ * @param bag must be a ResizableArrayBag<T> of the same type as the ResizableArrayBag<T> calling the method
+ * @return the ResizableArrayBag<T> that contains the common items between the ResizableArrayBag<T> passed in
+ * 			and the ResizableArrayBag<T> calling the method
+ */
 @Override
 public BagInterface<T> intersection(BagInterface<T> bag) {
 	ResizableArrayBag<T> intersection = new ResizableArrayBag<T>();
@@ -267,6 +284,14 @@ public BagInterface<T> intersection(BagInterface<T> bag) {
 	return intersection;
 }
 
+/*
+ * 	Iterates through both the ResizableArrayBag<T> that called the method as well as the ResizableArrayBag<T> passed in and adds the 
+ * 	uncommon values to a new ResizableArrayBag<T> and then returns the bag
+ * 
+ * @param bag must be a ResizableArrayBag<T> of the same type as the ResizableArrayBag<T> calling the method
+ * @return the ResizableArrayBag<T> that contains the uncommon items between the ResizableArrayBag<T> passed in 
+ * 			and the ResizableArrayBag<T> calling the method
+ */
 @Override
 public BagInterface<T> difference(BagInterface<T> bag) {
 	ResizableArrayBag<T> difference = (ResizableArrayBag<T>) union(bag);
