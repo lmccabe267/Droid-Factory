@@ -15,27 +15,28 @@ public class ArrayBagTest{
 		secondArray.add("e");
 		secondArray.add("d");
 		//test print...seems to print the location of the array in memory
-		System.out.println(secondArray.toString());
+		//System.out.println(secondArray);
 		//System.out.println(thirdArray.toString());
 		//Testing to see if the bag stored values correctly
 		
 		
 		//adding content to thirdArray
-		thirdArray.add("h"); 
-		thirdArray.add("h");
+		thirdArray.add("a"); 
+		thirdArray.add("a");
 		thirdArray.add("f");
 		thirdArray.add("g");
 		thirdArray.add("e");
 		
-		System.out.println(thirdArray.toString());
-		//test print...does same thing...odd...
+		//Print union
+		System.out.println("Printing union: ");
 		ResizableArrayBag<String> fourthArray = (ResizableArrayBag<String>)secondArray.union(thirdArray);
 		System.out.println(fourthArray.toString());
 		
 		//printing intersections
-		System.out.println("Printing intersection");
+		System.out.println("Printing intersection: ");
 		System.out.println(secondArray.intersection(thirdArray));
 		
+		//printing 
 		
 	}
 	

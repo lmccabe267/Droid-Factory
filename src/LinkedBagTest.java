@@ -2,15 +2,59 @@
 public class LinkedBagTest {
 	public static void main(String[] args) 
 	{
-      System.out.println("Creating an empty bag.");
-      LinkedBag<String> aBag = new LinkedBag<>();
-      testIsEmpty(aBag, true);
-		displayBag(aBag);
-      
-      String[] contentsOfBag = {"A", "D", "B", "A", "C", "A", "D"};
-		testAdd(aBag, contentsOfBag);
-		testIsEmpty(aBag, false);
+		//initializing arrays
+		BagInterface<String> firstArray = new LinkedBag<>();
+		BagInterface<String> secondArray = new LinkedBag<>();
+		LinkedBag<String> list = new LinkedBag<>();
+		LinkedBag<String> list2 = new LinkedBag<>();
+		
+		//adding values to list and list2
+		list.add("a");
+		list.add("b");
+		list.add("c");
+		list2.add("a");
+		list2.add("d");
+		list2.add("e");
+	
+		
+		//adding values to those arrays 
+		secondArray.add("a");
+		secondArray.add("b");
+		secondArray.add("c");
+		secondArray.add("d");
+		secondArray.add("e");
+		
+		firstArray.add("f");
+		firstArray.add("a");
+		firstArray.add("g");
+		firstArray.add("h");
+		firstArray.add("b");
+
+		
+		//Print intersection
+		System.out.println("Printing list and list2: ");
+		System.out.println(list);
+		System.out.println(list2);
+		System.out.println("Print intersection: ");
+		//System.out.println(list.intersection(list2));
+		System.out.println(firstArray.intersection(secondArray));
+		
+		
+		//Print union
+		System.out.println("Print union: ");
+		System.out.println(firstArray.union(secondArray));
+		System.out.println(list.union(list2));
+		//Print difference
+		System.out.println("Print difference: ");
+		System.out.println(firstArray.difference(secondArray));
+		//LinkedBag<String> testArray = (LinkedBag<String>)secondArray.intersection(firstArray);
+		//testArray.toArray();
+		//System.out.println(testArray);
+		
+		
 	} // end main
+	
+
    
    // Tests the method isEmpty.
    // Precondition: If the bag is empty, the parameter empty should be true;
