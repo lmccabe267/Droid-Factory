@@ -2,6 +2,22 @@
 public class LinkedBagTest {
 	public static void main(String[] args) 
 	{
+	LinkedBag<String> strBag1 = new LinkedBag<>();
+	LinkedBag<String> strBag2 = new LinkedBag<>();
+	
+	strBag1.add("a");
+	strBag1.add("b");
+	strBag1.add("c");
+	strBag2.add("c");
+	strBag2.add("d");
+	strBag2.add("e");
+	
+	LinkedBag<String> strBag3 = (LinkedBag<String>)strBag1.union(strBag2);
+	displayBag(strBag3);
+	LinkedBag<String> strBag4 = (LinkedBag<String>)strBag1.intersection(strBag2);
+	displayBag(strBag4);
+	LinkedBag<String> strBag5 = (LinkedBag<String>)strBag1.difference(strBag2);
+	displayBag(strBag5);
       System.out.println("Creating an empty bag.");
       LinkedBag<String> aBag = new LinkedBag<>();
       testIsEmpty(aBag, true);

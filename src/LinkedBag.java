@@ -75,6 +75,7 @@ public final class LinkedBag<T> implements BagInterface<T>
                 was successful, or null. */
     public T remove()
    {
+
       return null; // STUB
    } // end remove
 
@@ -83,6 +84,16 @@ public final class LinkedBag<T> implements BagInterface<T>
        @return  True if the removal was successful, or false otherwise. */
    public boolean remove(T anEntry)
    {
+	   
+	   Node currentNode = firstNode;
+       while ((currentNode != null))
+       {
+          if(currentNode.getNextNode().getData() == anEntry || currentNode.getNextNode().getData().equals(anEntry)) {
+        	  currentNode.setNextNode(currentNode.getNextNode().getNextNode());
+        	  return true;
+          }
+          currentNode = currentNode.next;
+       }
       return false; // STUB
    } // end remove
 
@@ -105,7 +116,14 @@ public final class LinkedBag<T> implements BagInterface<T>
          @return  True if the bag contains anEntry, or false otherwise. */
     public boolean contains(T anEntry)
    {
-      return false; // STUB
+    	boolean contains = false;
+    	T[] temp = toArray();
+    	for(int i = 0; i < temp.length; i++) {
+    		if(temp[i] == anEntry) {
+    			contains = true;
+    		}
+    	}
+      return contains; // STUB
    } // end contains
 
     private class Node
@@ -199,14 +217,17 @@ public BagInterface<T> intersection(BagInterface<T> bag) {
  * @param bag must be a LinkedBag<T> of the same type as the LinkedBag<T> calling the method
  * @return the LinkedBag<T> which is a result of finding the uncommon items between the two bags
  */
+
 @Override
 public BagInterface<T> difference(BagInterface<T> bag) {
-	LinkedBag<T> difference = (LinkedBag<T>)union(bag);
+	LinkedBag<T> temp = this;
+	LinkedBag<T> compare = (LinkedBag<T>)bag;
 	LinkedBag<T> intersection = (LinkedBag<T>)intersection(bag);
 	for(T item: intersection.toArray()) {
-		difference.remove(item);
+		remove(item);
 	}
+	LinkedBag<T> returnBag = (LinkedBag<T>)temp.union(compare);
 	
-	return difference;
+	return returnBag;
 }
 } // end LinkedBag
