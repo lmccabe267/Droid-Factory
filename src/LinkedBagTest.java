@@ -1,103 +1,65 @@
-
 public class LinkedBagTest {
-	public static void main(String[] args) 
-	{
-	LinkedBag<String> strBag1 = new LinkedBag<>();
-	LinkedBag<String> strBag2 = new LinkedBag<>();
-	
-	strBag1.add("a");
-	strBag1.add("b");
-	strBag1.add("c");
-	strBag2.add("c");
-	strBag2.add("d");
-	strBag2.add("e");
-	
-	displayBag(strBag1);
-	displayBag(strBag2);
-	LinkedBag<String> strBag5 = (LinkedBag<String>)strBag1.difference(strBag2);
-	displayBag(strBag5);
-      System.out.println("Creating an empty bag.");
-      LinkedBag<String> aBag = new LinkedBag<>();
-      testIsEmpty(aBag, true);
-		displayBag(aBag);
-      
-      String[] contentsOfBag = {"A", "D", "B", "A", "C", "A", "D"};
-		testAdd(aBag, contentsOfBag);
-		testIsEmpty(aBag, false);
-	} // end main
-   
-   // Tests the method isEmpty.
-   // Precondition: If the bag is empty, the parameter empty should be true;
-   // otherwise, it should be false.
-	private static void testIsEmpty(LinkedBag<String> bag, boolean empty)
-   {
-      System.out.print("\nTesting isEmpty with ");
-      if (empty)
-         System.out.println("an empty bag:");
-      else
-         System.out.println("a bag that is not empty:");
-      
-      System.out.print("isEmpty finds the bag ");
-      if (empty && bag.isEmpty())
-			System.out.println("empty: OK.");
-		else if (empty)
-			System.out.println("not empty, but it is: ERROR.");
-		else if (!empty && bag.isEmpty())
-			System.out.println("empty, but it is not empty: ERROR.");
-		else
-			System.out.println("not empty: OK.");      
-	} // end testIsEmpty
-   
-   // Tests the method add.
-   private static void testAdd(BagInterface<String> aBag, String[] content)
-   {
-      System.out.print("Adding the following strings to the bag: ");
-      for (int index = 0; index < content.length; index++)
-      {
-         if (aBag.add(content[index]))
-            System.out.print(content[index] + " ");
-         else
-            System.out.print("\nUnable to add " + content[index] +
-                             " to the bag.");
-      } // end for
-      System.out.println();
-      
-      displayBag(aBag);
-   } // end testAdd
-   
-   // Tests the method toArray while displaying the bag.
+    /*
+     * Main is the runner method, tests all code.
+     * 
+     */
+    public static void main(String[] args) 
+    {
+    LinkedBag<String> strBag1 = new LinkedBag<>();
+    LinkedBag<String> strBag2 = new LinkedBag<>();
+
+    //adding contents to strBag1
+    strBag1.add("a");
+    strBag1.add("b");
+    strBag1.add("c");
+    strBag1.add("d");
+    strBag1.add("e");
+    //strBag2
+    strBag2.add("c");
+    strBag2.add("d");
+    strBag2.add("e");
+    strBag2.add("f");
+    strBag2.add("g");
+
+    //ResizableArrayBag<String> fourthArray = (ResizableArrayBag<String>)secondArray.union(thirdArray);
+    //System.out.println(fourthArray.toString());
+
+    displayBag(strBag1);
+    displayBag(strBag2);
+    LinkedBag<String> strBag3 = (LinkedBag<String>)strBag1.union(strBag2);
+    System.out.println("Bag after union");
+    displayBag(strBag3);
+    LinkedBag<String> strBag4 = (LinkedBag<String>)strBag1.intersection(strBag2);
+    System.out.println("Bag after intersection");
+    displayBag(strBag4);
+    LinkedBag<String> strBag5 = (LinkedBag<String>)strBag1.difference(strBag2);
+    System.out.println("Bag after difference");
+    displayBag(strBag5);
+
+    //printing that we are done to terminal
+    System.out.println("Done printing main 3 methods.");
+    System.out.println();
+
+    } // end main
+
+
+  /*
+   * test method toArray() to display the bag
+   * @param aBag
+   */
    private static void displayBag(BagInterface<String> aBag)
    {
-      System.out.println("The bag contains the following string(s):");
+      System.out.println("Bag contains:");
       Object[] bagArray = aBag.toArray();
+      System.out.print("[");
       for (int index = 0; index < bagArray.length; index++)
       {
-         System.out.print(bagArray[index] + " ");
+
+         System.out.print(bagArray[index] + ", ");
+
       } // end for
-      
+      System.out.print("]");
       System.out.println();
    } // end displayBag
-
-   	public static <T> boolean isEmpty(LinkedBag<T> bag) {
-   		if (isEmpty(bag)) {
-   			return true;
-   		}
-   		return false;
-   	}
-
-} // end LinkedBagDemo1
-
-/*
- Creating an empty bag.
- 
- Testing isEmpty with an empty bag:
- isEmpty finds the bag empty: OK.
- The bag contains the following string(s):
- 
- Adding the following strings to the bag: A D B A C A D
- The bag contains the following string(s):
- D A C A B D A
- 
- Testing isEmpty with a bag that is not empty:
- isEmpty finds the bag not empty: OK.
- */
+   
+} // end LinkedBagTest

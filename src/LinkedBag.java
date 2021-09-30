@@ -187,12 +187,15 @@ public BagInterface<T> union(BagInterface<T> bag) {
 @Override
 public BagInterface<T> intersection(BagInterface<T> bag) {
 	LinkedBag<T> intersection = new LinkedBag<T>();
-	LinkedBag<T> temp = (LinkedBag<T>) bag;
+	ArrayList<T> temp = new ArrayList<T>();
+	
+	for(T item: bag.toArray()) {
+		temp.add(item);
+	}
 	
 	for(T item: toArray()) {
-		if(((LinkedBag<T>) bag).contains(item)) {
+		if(temp.contains(item)) {
 			intersection.add(item);
-			
 			temp.remove(item);
 		}
 		

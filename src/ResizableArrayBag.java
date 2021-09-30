@@ -271,12 +271,15 @@ ResizableArrayBag<T> everything = new ResizableArrayBag<T>();
 @Override
 public BagInterface<T> intersection(BagInterface<T> bag) {
 	ResizableArrayBag<T> intersection = new ResizableArrayBag<T>();
-	ResizableArrayBag<T> temp = (ResizableArrayBag<T>) bag;
+	ArrayList<T> temp = new ArrayList<T>();
+	
+	for(T item: bag.toArray()) {
+		temp.add(item);
+	}
 	
 	for(T item: toArray()) {
-		if(((ResizableArrayBag<T>) bag).contains(item)) {
+		if(temp.contains(item)) {
 			intersection.add(item);
-			
 			temp.remove(item);
 		}
 		
@@ -299,9 +302,11 @@ public BagInterface<T> difference(BagInterface<T> bag) {
 	T[] union = union(bag).toArray();
 	T[] intersection = intersection(bag).toArray();
 	ArrayList<T> difference = new ArrayList<T>();
+	
 	for(T item: union) {
 		difference.add(item);
 	}
+	
 	for(T item: intersection) {
 		difference.remove(item);
 		difference.remove(item);
