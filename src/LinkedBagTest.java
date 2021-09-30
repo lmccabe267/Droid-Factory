@@ -1,5 +1,9 @@
 
 public class LinkedBagTest {
+	/**
+	 * Main is the runner method, tests all code.
+	 * 
+	 */
 	public static void main(String[] args) 
 	{
 	LinkedBag<String> strBag1 = new LinkedBag<>();
@@ -28,9 +32,13 @@ public class LinkedBagTest {
 		testIsEmpty(aBag, false);
 	} // end main
    
-   // Tests the method isEmpty.
-   // Precondition: If the bag is empty, the parameter empty should be true;
-   // otherwise, it should be false.
+   /** 
+    *Tests the method isEmpty.
+    *Precondition: If the bag is empty, the parameter empty should be true;
+    *otherwise, it should be false.
+    *@param bag of type LinkedBag and boolean empty
+    *@return Prints if bag is empty true or full false
+    */
 	private static void testIsEmpty(LinkedBag<String> bag, boolean empty)
    {
       System.out.print("\nTesting isEmpty with ");
@@ -50,7 +58,11 @@ public class LinkedBagTest {
 			System.out.println("not empty: OK.");      
 	} // end testIsEmpty
    
-   // Tests the method add.
+   /**
+    * Test method add to see if working correctly
+    * @param aBag
+    * @param content
+    */
    private static void testAdd(BagInterface<String> aBag, String[] content)
    {
       System.out.print("Adding the following strings to the bag: ");
@@ -67,7 +79,10 @@ public class LinkedBagTest {
       displayBag(aBag);
    } // end testAdd
    
-   // Tests the method toArray while displaying the bag.
+  /**
+   * test method toArray() to display the bag
+   * @param aBag
+   */
    private static void displayBag(BagInterface<String> aBag)
    {
       System.out.println("The bag contains the following string(s):");
@@ -79,7 +94,12 @@ public class LinkedBagTest {
       
       System.out.println();
    } // end displayBag
-
+   /**
+    * Tests if bag is empty
+    * @param <T>
+    * @param bag
+    * @return false
+    */
    	public static <T> boolean isEmpty(LinkedBag<T> bag) {
    		if (isEmpty(bag)) {
    			return true;
@@ -89,17 +109,4 @@ public class LinkedBagTest {
 
 } // end LinkedBagDemo1
 
-/*
- Creating an empty bag.
- 
- Testing isEmpty with an empty bag:
- isEmpty finds the bag empty: OK.
- The bag contains the following string(s):
- 
- Adding the following strings to the bag: A D B A C A D
- The bag contains the following string(s):
- D A C A B D A
- 
- Testing isEmpty with a bag that is not empty:
- isEmpty finds the bag not empty: OK.
- */
+

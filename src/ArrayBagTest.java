@@ -1,7 +1,16 @@
-
+/**
+ * Tests whether the methods union, intersection, or difference methods work.
+ * 
+ * @author Samuel Nunez and Liam Mccabe
+ *
+ */
 public class ArrayBagTest{
 	
 	@SuppressWarnings("unchecked")
+	/**
+	 * The main runner method.
+	 * 
+	 */
 	public static void main(String[]args) {
 		//This section will test out the three methods, intersection, union, difference
 		BagInterface<String> newOne = new ResizableArrayBag<>();

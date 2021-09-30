@@ -77,7 +77,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       return result;
 	} // end toArray
 	
-	
+	/**
+	 * Makes the array visible
+	 * @return The array as a string.
+	 */
 	public String toString() {
 		T[] array = toArray();
 		String str = "{";

@@ -126,6 +126,11 @@ public final class LinkedBag<T> implements BagInterface<T>
       return contains; // STUB
    } // end contains
 
+    /**
+     * Node class that structures the definition of Node
+     * @author Samuel and Liam
+     *
+     */
     private class Node
     {
        private T data;    // Entry in bag
