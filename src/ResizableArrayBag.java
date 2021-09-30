@@ -77,7 +77,9 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       return result;
 	} // end toArray
 	
-	
+	/**
+	 * 
+	 */
 	public String toString() {
 		T[] array = toArray();
 		String str = "{";
