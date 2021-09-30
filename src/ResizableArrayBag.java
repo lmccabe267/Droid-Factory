@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 /**
    A class that implements a bag of objects by using an array.
@@ -294,13 +295,26 @@ public BagInterface<T> intersection(BagInterface<T> bag) {
  */
 @Override
 public BagInterface<T> difference(BagInterface<T> bag) {
-	ResizableArrayBag<T> difference = (ResizableArrayBag<T>) union(bag);
-	ResizableArrayBag<T> intersection = (ResizableArrayBag<T>) intersection(bag);
-
-	for(T item: intersection.toArray()) {
+	ResizableArrayBag<T> result = new ResizableArrayBag<>();
+	T[] union = union(bag).toArray();
+	T[] intersection = intersection(bag).toArray();
+	ArrayList<T> difference = new ArrayList<T>();
+	for(T item: union) {
+		difference.add(item);
+	}
+	for(T item: intersection) {
+		difference.remove(item);
 		difference.remove(item);
 	}
-	return difference;
+	
+	for(T item: difference) {
+		result.add(item);
+	}
+	
+	return result;
+	
+	
+	
 }
    
    

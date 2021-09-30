@@ -12,10 +12,8 @@ public class LinkedBagTest {
 	strBag2.add("d");
 	strBag2.add("e");
 	
-	LinkedBag<String> strBag3 = (LinkedBag<String>)strBag1.union(strBag2);
-	displayBag(strBag3);
-	LinkedBag<String> strBag4 = (LinkedBag<String>)strBag1.intersection(strBag2);
-	displayBag(strBag4);
+	displayBag(strBag1);
+	displayBag(strBag2);
 	LinkedBag<String> strBag5 = (LinkedBag<String>)strBag1.difference(strBag2);
 	displayBag(strBag5);
       System.out.println("Creating an empty bag.");

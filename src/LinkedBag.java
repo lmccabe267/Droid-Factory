@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
     A class of bags whose entries are stored in a chain of linked nodes.
     The bag is never full.
@@ -84,16 +86,6 @@ public final class LinkedBag<T> implements BagInterface<T>
        @return  True if the removal was successful, or false otherwise. */
    public boolean remove(T anEntry)
    {
-	   
-	   Node currentNode = firstNode;
-       while ((currentNode != null))
-       {
-          if(currentNode.getNextNode().getData() == anEntry || currentNode.getNextNode().getData().equals(anEntry)) {
-        	  currentNode.setNextNode(currentNode.getNextNode().getNextNode());
-        	  return true;
-          }
-          currentNode = currentNode.next;
-       }
       return false; // STUB
    } // end remove
 
@@ -220,14 +212,24 @@ public BagInterface<T> intersection(BagInterface<T> bag) {
 
 @Override
 public BagInterface<T> difference(BagInterface<T> bag) {
-	LinkedBag<T> temp = this;
-	LinkedBag<T> compare = (LinkedBag<T>)bag;
-	LinkedBag<T> intersection = (LinkedBag<T>)intersection(bag);
-	for(T item: intersection.toArray()) {
-		remove(item);
-	}
-	LinkedBag<T> returnBag = (LinkedBag<T>)temp.union(compare);
+	LinkedBag<T> result = new LinkedBag<>();
+	T[] union = union(bag).toArray();
+	T[] intersection = intersection(bag).toArray();
+	ArrayList<T> difference = new ArrayList<T>();
 	
-	return returnBag;
+	for(T item: union) {
+		difference.add(item);
+	}
+	
+	for(T item: intersection) {
+		difference.remove(item);
+		difference.remove(item);
+	}
+	
+	for(T item: difference) {
+		result.add(item);
+	}
+	
+	return result;
 }
 } // end LinkedBag
